@@ -4,3 +4,12 @@
     outline-offset: 0.125em;
   }
 }
+
+@utility step-indicator-bg {
+  background: url('../assets/images/bg-sidebar-mobile.svg') center / cover no-repeat;
+
+  @media (width >= 48rem) {
+    background-image: url('../assets/images/bg-sidebar-desktop.svg');
+    background-position: bottom;
+  }
+}
