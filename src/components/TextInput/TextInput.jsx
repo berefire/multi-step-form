@@ -27,7 +27,6 @@ function TextInput({ id, label, error, ...inputProps }) {
         <input
           id={id}
           type="text"
-          required
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
           className={`w-full min-w-0 rounded-md border px-4 py-2 text-sm font-medium text-blue-950 outline-none
