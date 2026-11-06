@@ -5,6 +5,18 @@
   }
 }
 
+@utility focus-ring-blue-950 {
+  &:focus-visible {
+    --focus-ring-color: var(--color-blue-950);
+  }
+}
+
+@utility focus-ring-purple-600 {
+  &:focus-visible {
+    --focus-ring-color: var(--color-purple-600);
+  }
+}
+
 @utility step-indicator-bg {
   background: url('../assets/images/bg-sidebar-mobile.svg') center / cover no-repeat;
 
