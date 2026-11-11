@@ -33,6 +33,12 @@ export const Yearly = {
   args: { billing: "yearly" },
 };
 
+export const Selected = {
+  args: {
+    checked: true,
+  },
+};
+
 export const Group = {
   render: function Render(args) {
     const [selected, setSelected] = useState("arcade");
