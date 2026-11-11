@@ -17,6 +17,19 @@
   }
 }
 
+@utility focus-ring-within {
+  &:has(:focus-visible) {
+    outline: 0.125em solid var(--focus-ring-color, currentColor);
+    outline-offset: 0.125em;
+  }
+}
+
+@utility focus-ring-within-purple-600 {
+  &:has(:focus-visible) {
+    --focus-ring-color: var(--color-purple-600);
+  }
+}
+
 @utility step-indicator-bg {
   background: url('../assets/images/bg-sidebar-mobile.svg') center / cover no-repeat;
 
