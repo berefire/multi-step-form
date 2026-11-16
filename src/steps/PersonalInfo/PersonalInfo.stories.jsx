@@ -7,8 +7,8 @@ export default {
     args: {
         data: { name: '', email: '', phone: '' },
         errors: {},
-        onChange: fn,
-    }
+        onChange: fn(),
+    },
 };
 
 export const Empty = {};
