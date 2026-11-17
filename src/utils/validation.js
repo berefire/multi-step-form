@@ -12,5 +12,5 @@ export function validatePersonalInfo({ name, email, phone }) {
   if (!phone.trim()) errors.phone = 'This field is required'
   else if (!PHONE_REGEX.test(phone)) errors.phone = 'Invalid phone number'
 
-  return errors
+  return errors;
 }
