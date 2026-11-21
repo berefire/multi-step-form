@@ -1,6 +1,6 @@
 function Attribution({colorText="text-slate-500", colorLink="text-blue-800"}) {
   return (
-    <footer className={`font-body text-center text-xs ${colorText}`}>
+    <footer className={`text-center text-xs ${colorText}`}>
       Challenge by{' '}
       <a
         href="https://www.frontendmentor.io?ref=challenge"

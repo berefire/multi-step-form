@@ -4,7 +4,7 @@ function PersonalInfo({ data, errors, onChange }) {
   return (
     <section
       aria-labelledby="personal-info-title"
-      className="font-body flex flex-col gap-6 md:gap-8"
+      className="flex flex-col gap-6 md:gap-8"
     >
       <header className="flex flex-col gap-2">
         <h2

@@ -4,7 +4,7 @@ import { getAssetUrl } from '@/utils/getAssetUrl';
 function PlanCard({ plan, billing, checked, onChange, name = 'plan'}) {
     return (
         <label
-         className="font-body flex cursor-pointer gap-4 rounded-lg border border-purple-200 p-4 bg-white hover:border-purple-600 has-checked:border-purple-600 has-checked:bg-blue-50 focus-ring-within focus-ring-within-purple-600 flex-1 lg:flex-col lg:gap-12">
+         className="flex cursor-pointer gap-4 rounded-lg border border-purple-200 p-4 bg-white hover:border-purple-600 has-checked:border-purple-600 has-checked:bg-blue-50 focus-ring-within focus-ring-within-purple-600 flex-1 lg:flex-col lg:gap-12">
 
          <input
             type="radio"

@@ -2,7 +2,7 @@ function TextInput({ id, label, error, ...inputProps }) {
   const errorId = `${id}-error`;
 
   return (
-    <div className="flex flex-col gap-2 font-body">
+    <div className="flex flex-col gap-2">
       <div className="flex justify-between">
         <label
           htmlFor={id}

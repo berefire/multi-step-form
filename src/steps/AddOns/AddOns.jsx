@@ -5,7 +5,7 @@ function AddOns({ selectedAddOns, billing, onToggle }) {
   return (
     <section
       aria-labelledby="add-ons-title"
-      className="font-body flex flex-col gap-6 md:gap-8"
+      className="flex flex-col gap-6 md:gap-8"
     >
       <header className="flex flex-col gap-2">
         <h2

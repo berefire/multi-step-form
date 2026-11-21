@@ -3,7 +3,7 @@ function BillingToggle({ billing, onChange }) {
   const toggle = () => onChange(isYearly ? "monthly" : "yearly");
 
   return (
-    <div className="flex items-center justify-center gap-6 rounded-lg bg-blue-50 py-3.5 text-sm font-medium font-body leading-normal">
+    <div className="flex items-center justify-center gap-6 rounded-lg bg-blue-50 py-3.5 text-sm font-medium leading-normal">
       <span className={isYearly ? "text-grey-500" : "text-blue-950"}>
         Monthly
       </span>

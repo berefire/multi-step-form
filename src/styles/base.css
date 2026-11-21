@@ -22,4 +22,8 @@
     font-weight: 700;
     src: url("../assets/fonts/Ubuntu-Bold.ttf") format("truetype");
   }
+
+  body {
+    @apply font-body;
+  }
 }

@@ -3,7 +3,7 @@ import { getAssetUrl } from '@/utils/getAssetUrl';
 
 function AddOnOption({ addOn, billing, checked, onChange, name = 'addOns' }) {
   return (
-    <label className="font-body flex cursor-pointer items-center gap-4 rounded-lg border border-purple-200 bg-white p-4 hover:border-purple-600 has-checked:border-purple-600 has-checked:bg-blue-50 focus-ring-within focus-ring-within-purple-600 md:gap-6 md:px-6">
+    <label className="flex cursor-pointer items-center gap-4 rounded-lg border border-purple-200 bg-white p-4 hover:border-purple-600 has-checked:border-purple-600 has-checked:bg-blue-50 focus-ring-within focus-ring-within-purple-600 md:gap-6 md:px-6">
       <input
         type="checkbox"
         name={name}
