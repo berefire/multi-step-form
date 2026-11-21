@@ -18,7 +18,7 @@ function PlanCard({ plan, billing, checked, onChange, name = 'plan'}) {
         
         <span className="flex flex-col gap-1">
             <span className="text-base leading-[1.2] font-medium text-blue-950">{plan.name}</span>
-        <span className="text-sm leading-[1.2] text-grey-500">${formatPrice(plan.price[billing])}</span>
+        <span className="text-sm leading-[1.2] text-grey-500">{formatPrice(plan.price[billing])}</span>
 
         </span>
 
