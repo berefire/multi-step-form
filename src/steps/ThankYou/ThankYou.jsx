@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+
+import { useFocusOnMount } from "@/hooks/useFocusOnMount";
 import { getAssetUrl } from "@/utils/getAssetUrl";
 
-function ThankYou() {
-    const headingRef= useRef(null);
 
-    useEffect(() => { headingRef.current.focus() }, [])
+function ThankYou() {
+    const headingRef = useFocusOnMount();
 
   return (
     <section
