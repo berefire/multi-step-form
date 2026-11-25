@@ -11,7 +11,7 @@ function ThankYou() {
       aria-labelledby="thank-you-title"
       className="grid place-content-center place-items-center gap-6 py-12 text-center md:h-full md:py-0 md:gap-8"
     >
-      <img className="size-14 md:size-20" src={getAssetUrl("assets/icons/icon-thank-you.svg")} alt=""/>
+      <img className="size-14 md:size-20 motion-safe:animate-pop-in motion-safe:[animation-delay:150ms] motion-safe:[animation-fill-mode:backwards] motion-reduce:animate-fade-only" src={getAssetUrl("assets/icons/icon-thank-you.svg")} alt=""/>
 
       <header className="flex flex-col items-center gap-2 md:gap-4">
         <h2

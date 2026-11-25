@@ -17,7 +17,7 @@ function BillingToggle({ billing, onChange }) {
         className="relative h-5 w-9.5 rounded-full bg-blue-950 focus-ring focus-ring-blue-950"
       >
         <span
-          className={`absolute top-1 left-1 size-3 rounded-full bg-white transition-transform ${
+          className={`absolute top-1 left-1 size-3 rounded-full bg-white transition-transform motion-reduce:transition-none ${
             isYearly ? "translate-x-4.5" : ""
           }`}
         />

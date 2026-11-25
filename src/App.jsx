@@ -40,7 +40,7 @@ function App() {
           >
             <div
               key={form.step}
-              className="flex flex-1 flex-col motion-safe:animate-fade-in"
+              className="flex flex-1 flex-col motion-safe:animate-step-in motion-reduce:animate-fade-only"
               style={{
                 "--step-offset":
                   form.direction === "forward" ? "1rem" : "-1rem",
