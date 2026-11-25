@@ -48,8 +48,8 @@ export function useMultiStepForm(){
         if ( step === 0 ) {
             const newErros = validatePersonalInfo(formData);
             setErrors(newErros);
-            const firstInvalid = Object.keys(newErros)[0];
-            if (firstInvalid) return firstInvalid;
+            const invalidFields = Object.keys(newErros);
+            if (invalidFields.length > 0) return invalidFields;
         }
         setDirection("forward");
         setStep((prev) => Math.min(prev + 1, THANK_YOU_STEP));

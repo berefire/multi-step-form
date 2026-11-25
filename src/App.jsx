@@ -1,4 +1,5 @@
 import { useMultiStepForm } from "@/hooks/useMultiStepForm";
+import { shake } from "@/utils/shake";
 
 import StepIndicator from "@/components/StepIndicator/StepIndicator";
 import FormNavigation from "@/components/FormNavigation/FormNavigation";
@@ -14,19 +15,28 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const firstInvalid = form.next();
-    if (firstInvalid) event.currentTarget.elements[firstInvalid].focus();
+    const invalidFields = form.next();
+
+    if (invalidFields?.length > 0) {
+      const { elements } = event.currentTarget;
+      invalidFields.forEach((name) => shake(elements[name]));
+      elements[invalidFields[0]]?.focus();
+    }
   }
 
   return (
     <main className="flex min-h-dvh flex-col bg-blue-100">
-      <div className="flex-1 md:grid md:place-items-center md:p-6">
-        <div className="md:flex md:gap-24 md:rounded-2xl md:bg-white md:p-3 md:pr-20 md:shadow">
+      <div
+        className={`flex-1 md:grid md:place-items-center md:p-6 ${
+          form.isComplete ? "" : "pb-32 md:pb-6"
+        }`}
+      >
+        <div className="md:flex md:gap-24 md:rounded-2xl md:bg-white md:p-3 md:pr-20 md:shadow-xl">
           <StepIndicator currentStep={Math.min(form.step, 3)} />
           <form
             noValidate
             onSubmit={handleSubmit}
-            className="relative mx-4 -mt-18 flex flex-col rounded-xl bg-white px-6 py-8 shadow md:m-0 md:p-0 md:pt-10 md:pb-4 md:shadow-none"
+            className="relative mx-4 -mt-18 flex flex-col rounded-xl bg-white px-6 py-8 shadow-xl md:shadow-none md:m-0 md:p-0 md:pt-10 md:pb-4"
           >
             <div
               key={form.step}
