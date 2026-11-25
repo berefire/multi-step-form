@@ -9,7 +9,7 @@ function ThankYou() {
   return (
     <section
       aria-labelledby="thank-you-title"
-      className="grid place-items-center gap-6 py-12 text-center md:h-full md:py-0 md:gap-8"
+      className="grid place-content-center place-items-center gap-6 py-12 text-center md:h-full md:py-0 md:gap-8"
     >
       <img className="size-14 md:size-20" src={getAssetUrl("assets/icons/icon-thank-you.svg")} alt=""/>
 
@@ -22,9 +22,8 @@ function ThankYou() {
         >
           Thank you!
         </h2>
-        <p className="text-base leading-normal text-center text-grey-500">
-          Thanks for your subscription! We hope you have fun using our platform.
-          If you ever need support, please feel free to email us at{""} <a href="mailto:support@loremgaming.com" className="text-purple-600 underline focus-ring">support@loremgaming.com</a>.
+        <p className="text-base leading-normal text-center text-grey-500 md:max-w-[35ch] lg:max-w-[50ch]">
+          Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at{""} <a href="mailto:support@loremgaming.com" className="text-purple-600 underline focus-ring">support@loremgaming.com</a>.
         </p>
       </header>
     </section>
