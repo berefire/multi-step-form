@@ -26,4 +26,12 @@
   body {
     @apply font-body;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 62.5rem white inset;
+    -webkit-text-fill-color: var(--color-blue-950);
+    caret-color: var(--color-blue-950);
+  }
 }
