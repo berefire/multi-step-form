@@ -1,122 +1,97 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useMultiStepForm } from "@/hooks/useMultiStepForm";
+
+import StepIndicator from "@/components/StepIndicator/StepIndicator";
+import FormNavigation from "@/components/FormNavigation/FormNavigation";
+import Attribution from "@/components/Attribution/Attribution";
+import PersonalInfo from "@/steps/PersonalInfo/PersonalInfo";
+import SelectPlan from "@/steps/SelectPlan/SelectPlan";
+import AddOns from "@/steps/AddOns/AddOns";
+import Summary from "@/steps/Summary/Summary";
+import ThankYou from "@/steps/ThankYou/ThankYou";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const form = useMultiStepForm();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const firstInvalid = form.next();
+    if (firstInvalid) event.currentTarget.elements[firstInvalid].focus();
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <main className="flex min-h-dvh flex-col bg-blue-100">
+      <div className="flex-1 md:grid md:place-items-center md:p-6">
+        <div className="md:flex md:gap-24 md:rounded-2xl md:bg-white md:p-3 md:pr-20 md:shadow">
+          <StepIndicator currentStep={Math.min(form.step, 3)} />
+          <form
+            noValidate
+            onSubmit={handleSubmit}
+            className="relative mx-4 -mt-18 flex flex-col rounded-xl bg-white px-6 py-8 shadow md:m-0 md:p-0 md:pt-10 md:pb-4 md:shadow-none"
+          >
+            <div
+              key={form.step}
+              className="flex flex-1 flex-col motion-safe:animate-fade-in"
+              style={{
+                "--step-offset":
+                  form.direction === "forward" ? "1rem" : "-1rem",
+              }}
+            >
+              {form.step === 0 && (
+                <PersonalInfo
+                  data={form.formData}
+                  errors={form.errors}
+                  onChange={form.updateField}
+                />
+              )}
 
-      <div className="ticks"></div>
+              {form.step === 1 && (
+                <SelectPlan
+                  plan={form.formData.plan}
+                  billing={form.formData.billing}
+                  onPlanChange={(id) => form.updateField("plan", id)}
+                  onBillingChange={(value) =>
+                    form.updateField("billing", value)
+                  }
+                />
+              )}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+              {form.step === 2 && (
+                <AddOns
+                  selectedAddOns={form.formData.addOns}
+                  billing={form.formData.billing}
+                  onToggle={form.toggleAddOn}
+                />
+              )}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+              {form.step === 3 && (
+                <Summary
+                  plan={form.formData.plan}
+                  billing={form.formData.billing}
+                  selectedAddOns={form.formData.addOns}
+                  onChangePlan={() => form.goTo(1)}
+                />
+              )}
+
+              {form.step === 4 && <ThankYou />}
+            </div>
+            {!form.isComplete && (
+              <FormNavigation
+                isFirstStep={form.isFirstStep}
+                isLastStep={form.isLastStep}
+                onBack={form.goBack}
+                footer={<Attribution />}
+              />
+            )}
+          </form>
+        </div>
+      </div>
+      <div
+        className={`px-2 md:block md:pb-0 ${form.isComplete ? "" : "hidden"}`}
+      >
+        <Attribution />
+      </div>
+    </main>
+  );
 }
 
-export default App
+export default App;
