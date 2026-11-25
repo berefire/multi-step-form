@@ -18,6 +18,7 @@ export function useMultiStepForm(){
     const [step, setStep] = useState(0);
     const [formData, setFormData] = useState(INITIAL_DATA);
     const [errors, setErrors] = useState({});
+    const [direction, setDirection] = useState("forward");
 
     function updateField(field, value){
         setFormData( (prev) => ({ ...prev, [field]: value }));
@@ -34,10 +35,12 @@ export function useMultiStepForm(){
     }
 
     function goBack() {
+        setDirection("back");
         setStep((prev) => Math.max(prev - 1, 0));
     }
 
     function goTo(target){
+        setDirection(target < step ? "back" : "forward");
         setStep(target);
     }
 
@@ -48,6 +51,7 @@ export function useMultiStepForm(){
             const firstInvalid = Object.keys(newErros)[0];
             if (firstInvalid) return firstInvalid;
         }
+        setDirection("forward");
         setStep((prev) => Math.min(prev + 1, THANK_YOU_STEP));
         return null;
     }
@@ -56,6 +60,7 @@ export function useMultiStepForm(){
         step,
         formData,
         errors,
+        direction,
         isFirstStep: step === 0,
         isLastStep: step === LAST_STEP,
         isComplete: step === THANK_YOU_STEP,
